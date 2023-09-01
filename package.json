@@ -3,9 +3,22 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "files": ["dist"],
+  "main": "./dist/normal-calendar.cjs",
+  "module": "./dist/normal-calendar.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/normal-calendar.js",
+      "require": "./dist/normal-calendar.umd.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build && vue-tsc --emitDeclarationOnly",
+    "types": "vue-tsc ",
     "preview": "vite preview"
   },
   "dependencies": {
