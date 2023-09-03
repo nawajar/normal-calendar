@@ -1,2 +1,2 @@
-import HelloWorld from "./components/HelloWorld.vue";
-export { HelloWorld };
+import Calendar from "./components/Calendar.vue";
+export { Calendar };
