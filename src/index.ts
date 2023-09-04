@@ -1,2 +1,7 @@
 import Calendar from "./components/Calendar.vue";
-export { Calendar };
+import {
+  type CalendarInstance,
+  type Day,
+  type CalendarOptions,
+} from "./types/calendar-instance";
+export { Calendar, CalendarInstance, Day, CalendarOptions };
