@@ -175,6 +175,7 @@ import { ref } from "vue";
 </template>
 ```
 
+![image info](./screenshot/example1.png)
 
 <h3 align="left">Support:</h3>
 
