@@ -177,7 +177,7 @@ import { ref } from "vue";
 </template>
 ```
 
-![image info](./screenshot/example1.png)
+![image info](https://raw.githubusercontent.com/nawajar/normal-calendar/main/screenshot/example1.png)
 
 <h3 align="left">Support:</h3>
 
