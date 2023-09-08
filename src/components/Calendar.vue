@@ -9,13 +9,14 @@ import {
   CalendarOptions,
   months,
 } from "../types/calendar-instance";
-const isOpenCalendar = ref(false);
-
 const props = defineProps({
   init: {
     type: Object as () => CalendarOptions,
   },
 });
+
+const isOpenCalendar = ref(false);
+const calendarMaxSize = 6 * 7;
 
 const generateCalendar = () => {
   context.monthName = months[context.month];
@@ -58,7 +59,7 @@ const generateCalendar = () => {
   }
 
   const calendarSize = days.length;
-  const calendarMaxSize = 6 * 7;
+
   for (let tail = 1; tail <= calendarMaxSize - calendarSize; tail++) {
     const day = {
       day: tail,
