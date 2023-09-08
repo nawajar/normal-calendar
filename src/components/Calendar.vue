@@ -26,42 +26,49 @@ const generateCalendar = () => {
   const startDayInWeekOfMonth = new Date(context.year, context.month, 1);
 
   let startNumberInWeek = startDayInWeekOfMonth.getDay();
-  console.log(
-    "start day in week ",
-    startDayInWeekOfMonth,
-    startDayInWeekOfMonth.getDay()
-  );
-
   if (startNumberInWeek > 0) {
     const prevMonth = new Date(context.year, context.month - 1, 1);
     let daysInMonths = daysInMonth(context.year, context.month);
     while (startNumberInWeek > 0) {
-      days.push({
+      const day = {
         day: daysInMonths--,
         month: prevMonth.getMonth(),
         year: prevMonth.getFullYear(),
-      });
+      };
+
+      if (props?.init?.onGenerateDay) {
+        props?.init?.onGenerateDay(day);
+      }
+      days.push(day);
       startNumberInWeek -= 1;
     }
     days.reverse();
   }
 
   for (let d = 1; d <= daysInMonths; d++) {
-    days.push({
+    const day = {
       day: d,
       month: context.month,
       year: context.year,
-    });
+    };
+    if (props?.init?.onGenerateDay) {
+      props?.init?.onGenerateDay(day);
+    }
+    days.push(day);
   }
 
   const calendarSize = days.length;
   const calendarMaxSize = 6 * 7;
   for (let tail = 1; tail <= calendarMaxSize - calendarSize; tail++) {
-    days.push({
+    const day = {
       day: tail,
       month: context.month + 1,
       year: context.year,
-    });
+    };
+    if (props?.init?.onGenerateDay) {
+      props?.init?.onGenerateDay(day);
+    }
+    days.push(day);
   }
 
   context.days.push(...days);
@@ -137,7 +144,6 @@ onMounted(async () => {
     context.year = initDay.getFullYear();
     context.monthName = months[context.month];
   }
-
   generateCalendar();
 });
 </script>

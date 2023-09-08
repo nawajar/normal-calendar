@@ -9,12 +9,12 @@ interface CalendarInstance {
   year: number;
   monthName: string;
   trigger: Trigger;
-  onGenerateDay?: (day: Day) => void;
 }
 
 interface CalendarOptions {
   day?: Date;
   toggle?: boolean;
+  onGenerateDay?: (day: Day) => void;
 }
 
 interface Trigger {
