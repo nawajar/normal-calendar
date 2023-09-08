@@ -2,6 +2,8 @@
 
 Normal calendar is a Vue library with zero dependencies, providing a minimalistic calendar implementation in a 6x7 grid format without a predefined template.
 
+Repository: https://github.com/nawajar/normal-calendar
+
 ## Table of Contents
 1. [Installation](#installation)
 2. [Usage](#usage)
