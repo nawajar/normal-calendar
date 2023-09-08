@@ -35,10 +35,9 @@ const generateCalendar = () => {
   if (startNumberInWeek > 0) {
     const prevMonth = new Date(context.year, context.month - 1, 1);
     let daysInMonths = daysInMonth(context.year, context.month);
-    console.log("prev ", daysInMonths);
     while (startNumberInWeek > 0) {
       days.push({
-        day: (daysInMonths--),
+        day: daysInMonths--,
         month: prevMonth.getMonth(),
         year: prevMonth.getFullYear(),
       });
@@ -54,6 +53,17 @@ const generateCalendar = () => {
       year: context.year,
     });
   }
+
+  const calendarSize = days.length;
+  const calendarMaxSize = 6 * 7;
+  for (let tail = 1; tail <= calendarMaxSize - calendarSize; tail++) {
+    days.push({
+      day: tail,
+      month: context.month + 1,
+      year: context.year,
+    });
+  }
+
   context.days.push(...days);
 };
 
@@ -62,12 +72,23 @@ const openCalendar = () => {
 };
 
 const nextMonth = () => {
+  if (context.month == 11) {
+    context.month = 0;
+    nextYear();
+    return;
+  }
   context.month += 1;
   generateCalendar();
 };
 
 const prevMonth = () => {
+  if (context.month == 0) {
+    context.month = 11;
+    prevYear();
+    return;
+  }
   context.month -= 1;
+
   generateCalendar();
 };
 
@@ -110,16 +131,13 @@ onMounted(async () => {
     openCalendar();
   }
 
-  //console.log(props.init?.day);
   if (props.init?.day) {
     const initDay = props.init?.day;
     context.month = initDay.getMonth();
     context.year = initDay.getFullYear();
     context.monthName = months[context.month];
   }
-  //console.log(context);
 
   generateCalendar();
-  console.log("mounted!");
 });
 </script>
