@@ -1,5 +1,6 @@
 {
   "name": "normal-calendar",
+  "description": "Normal calendar is a Vue library with zero dependencies, providing a minimalistic calendar implementation in a 6x7 grid format without a predefined template",
   "version": "0.0.4",
   "keywords": ["calendar", "date picker", "no template calendar", "vue calendar", "vue date picker"],
   "license": "MIT",
