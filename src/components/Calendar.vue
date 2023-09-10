@@ -116,6 +116,12 @@ const daysInMonth = (year: number, month: number) => {
   return new Date(year, month, 0).getDate();
 };
 
+const jumpTo = (month: number, year: number) => {
+  context.month = month;
+  context.year = year;
+  generateCalendar();
+}
+
 const context = reactive<CalendarInstance>({
   today: today,
   initMonthYear: today,
@@ -131,6 +137,7 @@ const context = reactive<CalendarInstance>({
     prevMonth: prevMonth,
     nextYear: nextYear,
     prevYear: prevYear,
+    jumpTo: jumpTo,
   },
 });
 
@@ -147,4 +154,5 @@ onMounted(async () => {
   }
   generateCalendar();
 });
+defineExpose({ context });
 </script>

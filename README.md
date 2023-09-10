@@ -63,6 +63,7 @@ The `Trigger` interface provides functions to navigate through months and years.
 - `nextYear: () => void` - Go to the next year.
 - `prevMonth: () => void` - Go to the previous month.
 - `prevYear: () => void` - Go to the previous year.
+-  `jumpTo: (month: number, year: number) => void` - Jump to the month , year
 
 ## Day
 
@@ -113,7 +114,6 @@ const onSelectDay = (day: Day) => {
 </script>
 
 <template>
-<input type="text" @click="calendar.toggle" v-model="pickDate" />
 <Calendar #default="{ calendar }">
         <div class="calendar-container">
           <input type="text" @click="calendar.toggle" v-model="pickDate" />
@@ -138,6 +138,25 @@ const onSelectDay = (day: Day) => {
         </div>
 </Calendar>
 </template>
+<style lang="css" scoped>
+.head {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-container {
+  width: 400px;
+  input {
+    width: 400px;
+  }
+}
+
+.calendar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+}
+</style>
 ```
 
 
@@ -146,13 +165,26 @@ Use as calendar
 ``` typescript
 <script setup lang="ts">
 import { Calendar, type Day } from "normal-calendar";
-import { ref } from "vue";
+import { ref, watch } from "vue";
+
+const calendarRef = ref();
+const monthYear = ref({ m: 10, y: 2023 });
+
+watch([monthYear], () => {
+  const { m, y } = monthYear.value;
+  calendarRef.value.context.trigger.jumpTo(m, y);
+});
+
 </script>
 
 <template>
     <Calendar
+        ref="calendarRef"
         #default="{ calendar }"
-        :init="{ toggle: true, day: new Date(2023, 10, 0) }"
+        :init="{
+          toggle: true,
+          day: new Date(2023, 10, 0),
+        }"
       >
         <div class="calendar-container">
           <div v-if="calendar.isOpenCalendar()">
@@ -166,6 +198,13 @@ import { ref } from "vue";
               <button @click="calendar.trigger.prevYear()">prev Year</button>
               <button @click="calendar.trigger.nextYear()">next Year</button>
             </div>
+            <div>
+              <select v-model="monthYear">
+                <option :value="{ m: 10, y: 2023 }">november 2023</option>
+                <option :value="{ m: 11, y: 2023 }">december 2023</option>
+                <option :value="{ m: 0, y: 2024 }">jan 2024</option>
+              </select>
+            </div>
             <div class="calendar">
               <template v-for="day of calendar.days">
                 <button>{{ day.day }}</button>
@@ -175,6 +214,25 @@ import { ref } from "vue";
         </div>
       </Calendar>
 </template>
+<style lang="css" scoped>
+.head {
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-container {
+  width: 400px;
+  input {
+    width: 400px;
+  }
+}
+
+.calendar {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+}
+</style>
 ```
 
 ![image info](https://raw.githubusercontent.com/nawajar/normal-calendar/main/screenshot/example1.png)

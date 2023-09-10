@@ -22,6 +22,7 @@ interface Trigger {
   nextYear: () => void;
   prevMonth: () => void;
   prevYear: () => void;
+  jumpTo: (month: number, year: number) => void
 }
 
 interface Day {
