@@ -235,7 +235,7 @@ watch([monthYear], () => {
 </style>
 ```
 
-![image info](https://raw.githubusercontent.com/nawajar/normal-calendar/main/screenshot/screen-rc.gif)
+![image info](https://raw.githubusercontent.com/nawajar/normal-calendar/main/screenshot/screen-rc.gifg)
 
 <h3 align="left">Support:</h3>
 
