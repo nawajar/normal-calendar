@@ -63,7 +63,7 @@ The `Trigger` interface provides functions to navigate through months and years.
 - `nextYear: () => void` - Go to the next year.
 - `prevMonth: () => void` - Go to the previous month.
 - `prevYear: () => void` - Go to the previous year.
--  `jumpTo: (month: number, year: number) => void` - Jump to the month , year
+-  `jumpTo: (month: number, year: number) => void` - Jump to the month , year.
 
 ## Day
 
